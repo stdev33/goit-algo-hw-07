@@ -91,3 +91,11 @@ class AVLTree:
         while current.left is not None:
             current = current.left
         return current.value
+
+    def sum_values(self):
+        return self._sum_values(self.root)
+
+    def _sum_values(self, root):
+        if root is None:
+            return 0
+        return root.value + self._sum_values(root.left) + self._sum_values(root.right)
