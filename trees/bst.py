@@ -38,3 +38,15 @@ class BinarySearchTree:
         while current.right is not None:
             current = current.right
         return current.value
+
+    def find_min(self):
+        if self.root is None:
+            return None
+        else:
+            return self._find_min(self.root)
+
+    def _find_min(self, root):
+        current = root
+        while current.left is not None:
+            current = current.left
+        return current.value
