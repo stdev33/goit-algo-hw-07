@@ -1,40 +1,19 @@
-import queue
-import random
-import time
-
-request_queue = queue.Queue()
-request_id_counter = 1
-
-
-def generate_request():
-    global request_id_counter
-
-    request = f"Request {request_id_counter}"
-    request_id_counter += 1
-
-    request_queue.put(request)
-    print(f"Generated and added to queue: {request}")
-
-
-def process_request():
-    if not request_queue.empty():
-        request = request_queue.get()
-
-        print(f"Processing {request}")
-        time.sleep(1)
-    else:
-        print("No requests available to process.")
+from trees import BinarySearchTree
+from trees import AVLTree
 
 
 def main():
-    try:
-        while True:
-            generate_request()
-            time.sleep(random.uniform(0.5, 2))
+    values = [21, 7, 23, 6, 15, 12, 14]
 
-            process_request()
-    except KeyboardInterrupt:
-        print("\nExiting the program...")
+    binary_search_tree = BinarySearchTree()
+    avl_tree = AVLTree()
+
+    for value in values:
+        binary_search_tree.insert(value)
+        avl_tree.insert(value)
+
+    print(f"Максимальне значення у BST: {binary_search_tree.find_max()}")
+    print(f"Максимальне значення у AVL-дереві: {avl_tree.find_max()}")
 
 
 if __name__ == "__main__":
